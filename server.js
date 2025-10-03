@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 // IMPORT MONGODB MONGOOSE SCHEMAS FROM Schemas.js
 import {User, Game} from './Schemas.js';
+import "./game_logic.js";
 
 const app = express();
 

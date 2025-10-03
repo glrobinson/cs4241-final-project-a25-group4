@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/glrobinson/cs4241-final-project-a25-group4#readme",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mongoose": "^8.19.0",
     "node": "^24.9.0"
