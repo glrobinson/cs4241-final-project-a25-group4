@@ -1,0 +1,27 @@
+{
+  "name": "cs4241-final-project-a25-group4",
+  "version": "1.0.0",
+  "description": "[Example Projects from D24](https://echo360.org/collection/35d9eb4e-1c44-4880-80b5-c7a2f04ba64c/public)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glrobinson/cs4241-final-project-a25-group4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glrobinson/cs4241-final-project-a25-group4/issues"
+  },
+  "homepage": "https://github.com/glrobinson/cs4241-final-project-a25-group4#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.19.0",
+    "node": "^24.9.0"
+  }
+}
