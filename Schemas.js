@@ -19,7 +19,13 @@ const User = mongoose.model('User', User_schema);
 const Game_schema = new mongoose.Schema({
 
     // the pot.
-    chips_pool: {type: Number, default: 0, required: true}, // the pool is a value that is default at 0
+    //chips_pool: {type: Number, default: 0, required: true}, // the pool is a value that is default at 0
+
+    round: {
+        type: Number,
+        default: 1,
+        min: 1
+    },
 
     // idea: keep track of players associated with a game, could enable reconnecting.
     // an array of user_ids
@@ -37,7 +43,6 @@ const Game_schema = new mongoose.Schema({
         type: String,
         enum: ['setup', 'in_progress', 'over'], // this locks in these as the only options
         default: 'setup', // games will be in setup by default.
-        required: true
     },
 
     // Idea use user._id.toString() for keys in a bets map.
