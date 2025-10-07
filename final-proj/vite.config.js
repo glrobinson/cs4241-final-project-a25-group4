@@ -4,4 +4,14 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api':   { target: 'http://localhost:3000', changeOrigin: true },
+      '/login': { target: 'http://localhost:3000', changeOrigin: true },
+      '/logout':{ target: 'http://localhost:3000', changeOrigin: true },
+      '/auth':  { target: 'http://localhost:3000', changeOrigin: true },
+      '/main.js': { target: 'http://localhost:3000', changeOrigin: true },
+      '/favicon.ico': { target: 'http://localhost:3000', changeOrigin: true },
+    }
+  }
 })
