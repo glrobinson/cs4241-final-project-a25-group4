@@ -20,9 +20,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const origin = process.env.APP_ORIGIN || 'http://localhost:3000'
 const app = express()
-if (process.env.NODE_ENV === 'production') {
-  app.set('trust proxy', 1)
-}
+const isProd = process.env.NODE_ENV === 'production'
+if (isProd) app.set('trust proxy', 1)
+
 const server = http.createServer(app),
     socketServer = new WebSocketServer({ server }),
     clients = []
@@ -286,7 +286,10 @@ app.use(
         secret: process.env.SESSION_SECRET || 'randomstuffforsecretidk',
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1000 * 60 * 60 },
+        cookie: { maxAge: 1000 * 60 * 60,
+            secure: isProd,
+            sameSite: 'lax'
+         },
     })
 )
 passport.serializeUser((user, done) => done(null, user._id.toString()))
@@ -383,7 +386,7 @@ app.post('/login', async (req, res) => {
         req.session.userId = user._id.toString()
         req.login(user, (err) => {
             if (err) console.error('Passport login error for local', err)
-            return res.json({ ok: true, created: false, user: getUserSafe({ ...user, id: user._id.toString() }) })
+            return res.redirect(303, '/')
         })
         return
     }
@@ -401,12 +404,7 @@ app.post('/login', async (req, res) => {
     req.session.userId = createdUser._id.toString()
     req.login(createdUser, (err) => {
         if (err) console.error('Passport login error!!!', err)
-        return res.json({
-            ok: true,
-            created: true,
-            message: 'Account created and you are now logged in! Yay!',
-            user: getUserSafe({ ...createdUser, id: createdUser._id.toString() }),
-        })
+        return res.redirect(303, '/')
     })
 })
 app.get('/auth/github',
