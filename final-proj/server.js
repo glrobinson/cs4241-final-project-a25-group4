@@ -509,9 +509,10 @@ socketServer.on('connection', async (client) => {
     client.on('close', cleanup)
     client.on('error', cleanup)
 })
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// });
 
 
 
