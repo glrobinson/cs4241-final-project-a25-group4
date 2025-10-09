@@ -20,6 +20,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const origin = process.env.APP_ORIGIN || 'http://localhost:3000'
 const app = express()
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1)
+}
 const server = http.createServer(app),
     socketServer = new WebSocketServer({ server }),
     clients = []
@@ -513,6 +516,10 @@ socketServer.on('connection', async (client) => {
     client.on('error', cleanup)
 })
 
-server.listen(3000)
+const PORT = process.env.PORT || 3000
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server listening on ${PORT}`)
+})
+
 
 ViteExpress.bind(app, server)
