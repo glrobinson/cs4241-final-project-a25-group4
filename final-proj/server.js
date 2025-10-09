@@ -1,9 +1,3 @@
-/* 
-1. Open up a socket server
-2. Maintain a list of clients connected to the socket server
-3. When a client sends a message to the socket server, forward it to all
-connected clients
-*/
 import 'dotenv/config'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -23,10 +17,12 @@ const app = express()
 const server = http.createServer(app),
     socketServer = new WebSocketServer({ server }),
     clients = []
-const client = new MongoClient(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+// const client = new MongoClient(process.env.MONGODB_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// })
+const client = new MongoClient(process.env.MONGODB_URI)
+
 await client.connect()
 const db = client.db(process.env.MONGODB_DBNAME || 'app')
 const Users = db.collection('users')
@@ -356,7 +352,10 @@ if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
 }
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'dist')));
+
+
 const requireAuth = (req, res, next) => {
     if (req.user?._id) {
         req.session.userId = req.user._id.toString()
@@ -365,9 +364,7 @@ const requireAuth = (req, res, next) => {
     if (!req.session.userId) return res.status(401).json({ error: 'NO NO NO! Not authenticated' })
     next()
 }
-app.get('/login', (_req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'))
-})
+
 app.post('/login', async (req, res) => {
     const { email, password } = req.body
     if (!email || !password) return res.status(400).json({ error: 'Email and password required' })
@@ -512,6 +509,11 @@ socketServer.on('connection', async (client) => {
     client.on('close', cleanup)
     client.on('error', cleanup)
 })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+
 
 server.listen(3000)
 
