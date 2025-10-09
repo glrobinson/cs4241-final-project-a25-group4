@@ -17,7 +17,7 @@
               <p class="text-secondary text-center mb-4">Use email and password to login/create and account or continue with GitHub.</p>
               <div id="err" class="alert alert-danger d-none" role="alert"></div>
               <div id="ok" class="alert alert-success d-none" role="alert"></div>
-              <form id="loginForm" novalidate class="needs-validation">
+              <form id="loginForm" action="/login" method="POST" novalidate class="needs-validation">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input id="email" name="email" type="email" class="form-control" autocomplete="email" required>
