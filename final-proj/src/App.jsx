@@ -31,7 +31,8 @@ export default function App() {
     const uid = me?.id || me?._id
     if (!ok) return
     setReady(false)
-    const ws = new WebSocket('ws://127.0.0.1:3000')
+    const WS_URL = (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host;
+    const ws = new WebSocket(import.meta.env.VITE_WS_URL || WS_URL);
     ref.current = ws
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: 'identify', userId: uid, name: me.name }))

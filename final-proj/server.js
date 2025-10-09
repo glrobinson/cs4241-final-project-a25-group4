@@ -442,7 +442,7 @@ app.get('/api/leaderboard', async (_req, res) => {
     res.json(top.map(u => ({ id: u._id.toString(), name: u.name || 'Player', chips: u.chips ?? 0 })))
 })
 
-app.get('/', requireAuth, (req, res, next) => next())
+app.get('/', (req, res, next) => next())
 socketServer.on('connection', async (client) => {
     console.log('connect!')
     sockets.set(client, { userId: null, name: null, roomId: null })
