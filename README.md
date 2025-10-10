@@ -1,62 +1,66 @@
-# Final Project
+# Final Webware Project: 
 
-[Example Projects from D24](https://echo360.org/collection/35d9eb4e-1c44-4880-80b5-c7a2f04ba64c/public)
+https://cs4241-final-project-a25-group4-production-061b.up.railway.app/
 
-[Example Projects from A23](https://echo360.org/collection/50a4d343-caea-4deb-93ee-61bdd7da543f/public)
+Group 4 members:
 
-**Example Projects from Earlier Terms:**
-- [https://pushbox.glitch.me/app](https://pushbox.glitch.me/app)
-- [https://github.com/Cather-Zhang/final_project](https://github.com/Cather-Zhang/final_project)
-- [https://clip.kmoene.com/](https://clip.kmoene.com/)
-- [https://github.com/GP2P/G3P-Expense-Tracker](https://github.com/GP2P/G3P-Expense-Tracker)
+Ryan Addeche
+Elijah Gray
+Lucas Marble
+Grace Robinson
+Nathaniel Schneider
 
-For your final project, you'll implement a web application that exhibits understanding of the course materials. This project should provide an opportunity to both be creative and to pursue individual research and learning goals.
+## Project Description
 
-## General description
-Your project should consist of a complete Web application, exhibiting facets of the three main sections of the course material:
+Our project is a server that allows you to play the classic card game of Black Jack, where you can join in games with other players. In order to play, you must first login. In order to login you can either input a username and password, or you can use your github account to sign in instead, with the option on the bottom. Once you have logged in, you will be shown the game area, which includes a lot of pieces of information. At the top, there is a selection of rooms that you can switch between to play with people who are currently in the same room. On the left, there is the dealer's hand and your current hand. If you haven't placed a bet yet, you won't have anything in your hand. Every new user starts with 500 chips. You can bet in 10s up to your current chip count. To play the game, you must first make a bet. Once the bet is made, which the place where you can place a bet is under the Actions section, you will see under Players whose turn it is. The moment all players have placed a bet, the game will start and you will see the under the Dealer selection, the dealers upcard, which is the card that is showing. Under the Player section you will see the total amount of chips that you have, the chips that you bet during this game, the hand that you have, which means the cards that you were delt, and whether it is your turn or not. If it is you turn, you will either hit, stand, or double down, which is all under the Actions section. This part is up to you to decide! Once all players in the room have played, the results of the game will be displayed under the Game Outcome. There you will be able to see who won or lost chips. You will also be able to see why you won or lost chips. Remember you are playing against the dealer, not the other players in the room if there are any. Should you win the round, you win what you bet, but if you lose, you lose what you bet. At the bottom of the screen is the leaderboards of the top 10 players by chip count. Should you ever run out of chips, you have gone broke and will not be able to bet anymore. You can logout at any time, which will take you back to the login page.
 
-- Static web page content and design. You should have a project that is accessible, easily navigable, and features significant content.
-- Dynamic behavior implemented with JavaScript (TypeScript is also allowed if your group wants to explore it).
-- Server-side programming *using Node.js*. Typically this will take the form of some sort of persistent data (database), authentication, and possibly server-side computation. 
-- A video (less than five minutes) where each group member explains some aspect of the project. An easy way to produce this video is for you all the groups members to join a Zoom call that is recorded; each member can share their screen when they discuss the project or one member can "drive" the interface while other members narrate (this second option will probably work better.) Upload the video to Canvas. (Further instructions are available in the Canvas assignment.) Make sure your video is less than five minutes but long enough to successfully explain your project and show it in action. There is no minimum video length.
+How to play Blackjack:
+The goal is to have a hand with the biggest value, but no over 21. All players are independent and face the dealer as their opponent. This game uses a standard 52 card deck. Players make bets to determine their winnings prior to starting. If you go over 21, you have "busted" meaning you have lost. Aces are situationally 11 or 1 depending on whether it being 21 will or won't cause your hand to go over 21, meaning aces will always be valued to your advantage. Face cards (Jack, Queen, and King) are worth 10. All numerical cards are worth their number in value. 
+In the beginning, each player draws 2 cards to form their initial hand. The dealer likewise receives 2 cards. The players will then go first and make moves. The dealer will then take their turn. If the dealer busts, all players who did not bust will instantly win. Once all players are done the game will conclude and chips will be distributed accordingly for each player based on their bet and hand vs the dealer.
+You have 3 options for each turn (Hit, Stand, and Double Down)
+Hit - Receive a card. You can do this repeatedly. If you draw over 21, you will bust. Players have a disadvantage that they can bust before the dealer even draws. If the dealer and player both bust, the player still loses.
+Stand - Refuse to draw anymore cards and keep your hand until the game concludes.
+Double Down - Similar to stand, except you will double your initial bet.
+If you draw 21 exactly (known as a blackjack), you will receive extra winnings.
 
-## Project ideation
-Excellent projects typically serve someone/some group; for this assignment you need to define your users and stakeholders. I encourage you to identify projects that will have some impact, whether artistically, politically, productivity, or something else altogether. 
+To login, you can either use your github account, in which case it will ask you which github account you wish to connect and ask for permission for it to use your github account. If you don't wish to do that, you can make your own username and password. If the username and password you input already exist, you will sign into the account in question. If the username exists, but the password is incorrect, you will not be able to login. If the username does not exist, it will automatically register a new account for you.
 
-## Deliverables
+## Technologies Used
 
-### Form Team (Due Tuesday, September 23, 11:59 pm)
-Students are will work in teams of 3-5 students for the project. Working in teams should help enable you to build a good project in a limited amount of time.  Use the `#finalproject` channel in Slack to pitch ideas for final projects and/or find fellow team members as needed.
+We used React + Vite for the frontend, as it was something that most group mates were familiar with.
 
-Teams must be in place by end of day on Tuesday, September 23. If you have not identified a team at this point, you will be assigned a team. **Put all team members together in one of the empty "Final Project" groups on Canvas. You MUST do this step to receive full credit on the assignment.**
+We used Bootstrap for CSS as it works well with React and provides a professional and clean look to our application.
 
-### Proposal (Due Tuesday, September 30, 11:59 pm) 
-Provide an outline of your project direction and the names of associated team members. The outline should have enough detail so that staff can determine if it meets the minimum expectations or if it goes too far to be reasonable by the deadline. Please include a general description of the project and a list of key technologies/libraries you plan on using (e.g. React, Three.js, Svelte, TypeScript, etc.). Two to four paragraps should provide enough level of detail. Name the file proposal.md and submit a pull request by Tuesday, September 30th at 11:59 PM (end of day). Your pull request does not need to have a specific name. Only one pull request is required per team.
+We used Node.js with Express for the backend server logic, allowing us to have authentication, real time updates, and queries.
 
-There are no other scheduled checkpoints for your project. 
+We used WebSockets for the Backend logic to provide real time updates between players.
 
-### Turning in Your Project (Due Friday, October 10, 11:59 pm)
-**Although the assignment is due at 11:59 pm, you must be prepared to demo your website in class that day.**
+We used MongoDB for our database to store user accounts
 
-Submit a second PR on the final project repo to turn in your app and code. Again, only one pull request per team.
+We used GitHub authentication for an alternative method for signing in and better security
 
-Deploy your app, in the form of a webpage, to Render/Heroku/Digital Ocean or whatever hosting service you choose; it is critical that the application functions correctly wherever you post it.
+We hosted our project on Railway, which works well with MongoDB and GitHub Authentication and can link directly to a Github repository
 
-The README for your second pull request doesn’t need to be a formal report, but it should contain the following:
+## Challenges
 
-1. A brief description of what you created, and a link to the project itself (two paragraphs of text)
-2. Any additional instructions that might be needed to fully use your project (login information, etc.)
-3. An outline of the technologies you used and how you used them.
-4. What challenges you faced in completing the project.
-5. What each group member was responsible for designing / developing.
-6. What accessibility features you included in your project.
+Some of the challenges we faced include:
 
-Think of 1, 3, and 4 in particular in a similar vein to the design / technical achievements for A1—A4. Make a case for why what you did was challenging and why your implementation deserves a grade of 100%.
+Connecting the game logic to the server and client. 
+Making sure the database connection worked on everyone's devices.
+Deployment onto Railway.
 
-The video described above is also due on Canvas at this time.
+## Contributions
 
-## FAQs
+Lucas: Due to some personal events going on, Lucas wasn't able to contribute as much with the coding, but he did help with troubleshooting errors and figuring out what was wrong, testing to make sure everything was working, checking and fixing edge cases, helped out with planning the server and game logic, wrote the majority of the readme, and recorded and edited the video.
 
-**Can I use XYZ framework?** 
+Grace: Grace was able to integrate the login, github authentication, and mongoDB elements, refering back to her a3 assignment, as well as work on integrating the websockets in with the game logic and actually making a working game room! I also helped created the leaderboard and rooms component.I was also able to get the application deployed on Railway. I also contributed to making the video.
 
-You can use any web-based frameworks or tools available, but for your server programming you need to use Node.js. Your client-side scripting language should be either JavaScript or TypeScript. Note that the staff may not be able to assist with TypeScript questions.
+Elijah: I independently created the initial core game logic of blackjack early on with a flow chart I made. I designed some initial schema ideas for the database (see elijah experiment branch). I wrote some basic tests for the game logic for others to use as examples. I wrote an overview of how blackjack works (see How to play Blackjack) that was copypasted into this readme file. I also played some online blackjack games to get a feel for it. It was somewhat difficult setting up the core game logic but playing around with it with some trial and error helped me make a working game system. I also provided my previous a4 project as an example of how to do a leaderboard.
+
+Ryan: I helped integrate websockets with the game logic and ensured that relevant information was being updated in the mongodb database. Also focused on figuring out what data was needed to send to the serverside from each client for the game to operate as it should.
+
+Nathaniel: I helped with the leaderboard and to integrate websockets with the leaderboard and a bit with the integraction with the game logic. I setup the inital application, then after some developement by myself and others I refactored the application from html and javascript files to react so it would work when deployed and made sure the structure of the files work together. (I also have the top score on the leaderboard!)
+
+## Accessibility
+
+Some accessibility features that are present in our application include having a semantic structure. Examples are the use of elements such a `<nav>`, `<div>`, `<header>`, `<h1>`, `<h2>`, etc. to make the application mre structured and easy to navigate to help with assistive technologies. The way that we structured the application also helps screen readers when they are trying to navigate to a certain place. Another accessibility feature that we have in this application is good color contrast which helps if comply with the WCAG. Our application is also mobile friendly!
