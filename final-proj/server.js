@@ -21,7 +21,7 @@ const __dirname = path.dirname(__filename)
 const origin = process.env.APP_ORIGIN || 'http://localhost:3000'
 const app = express()
 const server = http.createServer(app),
-    socketServer = new WebSocketServer({ server }),
+    socketServer = new WebSocketServer({ server, path: '/ws' }),
     clients = []
 const client = new MongoClient(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -439,7 +439,7 @@ app.get('/api/leaderboard', async (_req, res) => {
     res.json(top.map(u => ({ id: u._id.toString(), name: u.name || 'Player', chips: u.chips ?? 0 })))
 })
 
-app.get('/', requireAuth, (req, res, next) => next())
+app.get('/', (req, res, next) => next())
 socketServer.on('connection', async (client) => {
     console.log('connect!')
     sockets.set(client, { userId: null, name: null, roomId: null })
