@@ -1,0 +1,34 @@
+{
+  "name": "final_server",
+  "version": "1.0.0",
+  "description": "[Example Projects from D24](https://echo360.org/collection/35d9eb4e-1c44-4880-80b5-c7a2f04ba64c/public)",
+  "main": "server.js",
+  "scripts": {
+    "build:frontend": "cd final-proj && npm install && npm run build",
+    "deploy:frontend": "cd final-proj && npm run build",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glrobinson/cs4241-final-project-a25-group4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glrobinson/cs4241-final-project-a25-group4/issues"
+  },
+  "homepage": "https://github.com/glrobinson/cs4241-final-project-a25-group4#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "http": "^0.0.1-security",
+    "mongodb": "^6.20.0",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "path": "^0.12.7",
+    "vite-express": "^0.21.1",
+    "ws": "^8.18.3"
+  }
+}

@@ -4,7 +4,6 @@
 3. When a client sends a message to the socket server, forward it to all
 connected clients
 */
-import 'dotenv/config'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import express from 'express'
@@ -15,11 +14,20 @@ import session from 'express-session'
 import passport from 'passport'
 import { Strategy as GitHubStrategy } from 'passport-github2'
 import { MongoClient, ObjectId } from 'mongodb'
+import dotenv from "dotenv";
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+// serve static files
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({path: path.resolve(__dirname, '.env')});
+
 const origin = process.env.APP_ORIGIN || 'http://localhost:3000'
+
 const app = express()
+
+app.use(express.static(path.join(__dirname, 'final-proj/dist')));
+
 const server = http.createServer(app),
     socketServer = new WebSocketServer({ server }),
     clients = []
@@ -366,7 +374,7 @@ const requireAuth = (req, res, next) => {
     next()
 }
 app.get('/login', (_req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'))
+    res.sendFile(path.join(__dirname, 'final-proj', 'public', 'login.html'))
 })
 app.post('/login', async (req, res) => {
     const { email, password } = req.body
@@ -515,4 +523,4 @@ socketServer.on('connection', async (client) => {
 
 server.listen(3000)
 
-ViteExpress.bind(app, server)
+//ViteExpress.bind(app, server)
